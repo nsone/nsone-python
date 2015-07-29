@@ -35,6 +35,10 @@ class BasicTransport(TransportBase):
         request.get_method = lambda: method
 
         def handleProblem(code, resp, msg):
+            if errback:
+                errback(resp)
+                return
+
             if code == 429:
                 raise RateLimitException('rate limit exceeded',
                                          resp,
