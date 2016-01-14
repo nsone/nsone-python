@@ -123,7 +123,7 @@ class Zone(object):
             raise AttributeError(item)
 
         # dynamic adding of various record types, e.g. add_A, add_CNAME, etc
-        (_, rtype) = item.split('_', 2)
+        (_, rtype) = item.split('_', 1)
 
         def add_X(domain, answers, callback=None, errback=None, **kwargs):
             kwargs['answers'] = answers
