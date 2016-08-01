@@ -20,3 +20,14 @@ class Monitors(resource.BaseResource):
         return self._make_request('GET', '%s/%s' % (self.ROOT, jobid),
                                   callback=callback,
                                   errback=errback)
+
+    def create(self,body, callback=None, errback=None):
+        return self._make_request('PUT', '%s' % (self.ROOT), body=body,
+                                  callback=callback,
+                                  errback=errback)
+
+    def retrieve(self, jobid, callback=None, errback=None):
+        return self._make_request('GET', '%s/%s' % (self.ROOT, jobid),
+                                  callback=callback,
+                                  errback=errback)
+
