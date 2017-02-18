@@ -29,8 +29,14 @@ class Record(object):
         """
         self._rest = Records(parentZone.config)
         self.parentZone = parentZone
-        if not domain.endswith(parentZone.zone):
-            domain = domain + '.' + parentZone.zone
+        zone = parentZone.zone
+        if not (
+            # The domain ends with the parent zone
+            domain.endswith(zone)
+            # and is on a label boundary
+            and domain[1-len(zone):-len(zone)] in ('', '.')
+        ):
+            domain = domain + '.' + zone
         self.domain = domain
         self.type = type
         self.data = None
