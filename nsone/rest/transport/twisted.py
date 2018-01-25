@@ -7,7 +7,12 @@ from __future__ import absolute_import
 from nsone.rest.transport.base import TransportBase
 from nsone.rest.errors import ResourceException, RateLimitException, \
     AuthException
-from urllib import urlencode
+
+try:
+    from urllib import urlencode
+except ImportError:  # Python 3 +
+    from urllib.parse import urlencode
+
 import json
 import random
 
